@@ -1,0 +1,39 @@
+{
+    "users": [
+      {
+        "username": "Thomas",
+        "password": "Pepeci67310",
+        "isAdmin": false,
+        "balance": 100
+      },
+      {
+        "username": "utilisateur2",
+        "password": "motdepasse2",
+        "isAdmin": false,
+        "balance": 500
+      },
+      {
+        "username": "utilisateur3",
+        "password": "motdepasse3",
+        "isAdmin": false,
+        "balance": 250
+      }
+    ],
+    "transactionLogs": [
+      {
+        "sender": "utilisateur1",
+        "receiver": "utilisateur2",
+        "amount": 50,
+        "type": "transfert",
+        "date": "2023-01-01 12:00:00"
+      },
+      {
+        "sender": "utilisateur2",
+        "receiver": "utilisateur3",
+        "amount": 200,
+        "type": "achat",
+        "date": "2023-01-02 15:30:00"
+      }
+    ]
+  }
+  
