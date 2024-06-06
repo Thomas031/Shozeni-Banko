@@ -7,6 +7,8 @@ let transactionLogs = JSON.parse(localStorage.getItem('transactionLogs')) || [];
 if (users.length === 0) {
     users.push(
         { username: 'user', password: 'password', isAdmin: false, balance: 0 },
+        { username: '0629482089267', password: 'Thomas280808', isAdmin: false, balance: 0 },
+        { username: 'Thomas', password: 'Thomas', isAdmin: false, balance: 0 },
         { username: 'Admin', password: 'Pepeci67310', isAdmin: true, balance: 1000 }
     );
 
