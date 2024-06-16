@@ -78,38 +78,10 @@ function login() {
         document.getElementById('logs-section').style.display = 'block';
         updateBalance();
     } else {
-        alert('Nom d\'utilisateur ou mot de passe incorrect. Veuillez créer un compte si vous n\'avez pas de compte.');
-        document.getElementById('login-section').style.display = 'none';
+        alert('Nom d\'utilisateur ou mot de passe incorrect. Veuillez contacter votre banque pour obtenir un compte si vous n\'avez pas de compte.');
         document.getElementById('signup-section').style.display = 'block';
         document.getElementById('logs-section').style.display = 'none';  // Masquer la section des transactions
         updateBalance();
-    }
-}
-
-
-
-// Nouvelle fonction pour créer un compte
-function signup() {
-    const newUsername = document.getElementById('newUsername').value;
-    const newPassword = document.getElementById('newPassword').value;
-
-    if (newUsername && newPassword) {
-        // Vérifier si le nom d'utilisateur est déjà pris
-        if (!users.some(u => u.username === newUsername)) {
-            const newUser = { username: newUsername, password: newPassword, isAdmin: false, balance: 0 };
-            users.push(newUser);
-
-            // Enregistrer les utilisateurs mis à jour dans le stockage local
-            localStorage.setItem('users', JSON.stringify(users));
-
-            alert('Compte créé avec succès. Vous pouvez maintenant vous connecter.');
-            document.getElementById('signup-section').style.display = 'none';
-            document.getElementById('login-section').style.display = 'block';
-        } else {
-            alert('Ce nom d\'utilisateur est déjà pris. Veuillez choisir un autre nom.');
-        }
-    } else {
-        alert('Veuillez remplir tous les champs.');
     }
 }
 
