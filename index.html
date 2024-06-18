@@ -9,9 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="script.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    </head>
 </head>
-
 <body>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <header>
@@ -25,6 +23,10 @@
         </section>
     </header>
     <main>
+        <button onclick="logout()" style="display: none;">Déconnexion</button>
+        <!-- Bouton de déconnexion à l'extérieur de la section Admin -->
+        <button id="logout-button" onclick="logout()" style="display: none;">Déconnexion</button>
+
         <section id="login-section">
             <h2>Connexion</h2>
             <label for="username">Nom d'utilisateur :</label>
@@ -43,18 +45,12 @@
             <button onclick="modifyAccountAdmin()">Modifier un compte utilisateur</button>
         </section>
 
-        <button onclick="logout()" style="display: none;">Déconnexion</button>
-        <!-- Bouton de déconnexion à l'extérieur de la section Admin -->
-        <button id="logout-button" onclick="logout()" style="display: none;">Déconnexion</button>
-
-
         <section id="balance-section" style="display: none;">
             <h2>Solde :</h2>
             <p id="balance">0 €</p>
         </section>
         <section id="transaction-section" style="display: none;">
             <h2>Effectuer une transaction</h2>
-            <input type="number" id="amount" placeholder="Entrez le montant">
             <!-- Ajoutez ceci à l'endroit où vous souhaitez dans votre section transaction -->
             <button onclick="transferFunds()">Virement</button>
 
