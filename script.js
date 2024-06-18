@@ -6,10 +6,11 @@ let transactionLogs = JSON.parse(localStorage.getItem('transactionLogs')) || [];
 // Si aucun utilisateur n'est présent dans le stockage local, ajoute des utilisateurs par défaut
 if (users.length === 0) {
     users.push(
-        { username: 'user', password: 'password', isAdmin: false, balance: 0 },
-        { username: '0629482089267', password: 'Thomas280808', isAdmin: false, balance: 0 },
-        { username: 'Thomas', password: 'Thomas', isAdmin: false, balance: 0 },
-        { username: 'Admin', password: 'Pepeci67310', isAdmin: true, balance: 1000 }
+        { username: 'user', password: 'password', isAdmin: false, balance: 0, isBanned: false },
+        { username: '0629482089267', password: 'Thomas280808', isAdmin: false, balance: 0, isBanned: false },
+        { username: 'Thomas', password: 'Thomas', isAdmin: false, balance: 0, isBanned: false },
+        { username: 'test_ban', password: 'password', isAdmin: false, balance: 0, isBanned: true },
+        { username: 'Admin', password: 'Pepeci67310', isAdmin: true, balance: 1000, isBanned: false }
     );
 
     // Enregistre les utilisateurs dans le stockage local
@@ -60,30 +61,33 @@ function login() {
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {
-        currentUser = user;
+        if (user.isBanned) {
+            alert('Votre compte est banni. Veuillez contacter le support pour plus d\'informations.');
+        } else {
+            currentUser = user;
 
-        // Enregistrer les informations de connexion dans le stockage local
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            // Enregistrer les informations de connexion dans le stockage local
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
-        document.getElementById('login-section').style.display = 'none';
-        document.getElementById('signup-section').style.display = 'none';
+            document.getElementById('login-section').style.display = 'none';
 
-        if (user.isAdmin) {
-            document.getElementById('admin-section').style.display = 'block';
-            document.getElementById('admin-section-header').style.display = 'block';
+            if (user.isAdmin) {
+                document.getElementById('admin-section').style.display = 'block';
+                document.getElementById('admin-section-header').style.display = 'block';
+            }
+
+            document.getElementById('balance-section').style.display = 'block';
+            document.getElementById('transaction-section').style.display = 'block';
+            document.getElementById('logs-section').style.display = 'block';
+            updateBalance();
         }
-
-        document.getElementById('balance-section').style.display = 'block';
-        document.getElementById('transaction-section').style.display = 'block';
-        document.getElementById('logs-section').style.display = 'block';
-        updateBalance();
     } else {
         alert('Nom d\'utilisateur ou mot de passe incorrect. Veuillez contacter votre banque pour obtenir un compte si vous n\'avez pas de compte.');
-        document.getElementById('signup-section').style.display = 'block';
         document.getElementById('logs-section').style.display = 'none';  // Masquer la section des transactions
         updateBalance();
     }
 }
+
 
 function logout() {
     currentUser = null;
@@ -114,6 +118,14 @@ function updateBalance() {
     }
 
     balanceElement.innerText = `${formattedBalance} €`;
+
+    // Ajoutez la classe fade-in pour lancer l'animation
+    balanceElement.classList.add('fade-in');
+
+    // Retirez la classe fade-in après une courte durée pour que l'animation ne se déclenche qu'une seule fois
+    setTimeout(() => {
+        balanceElement.classList.remove('fade-in');
+    }, 1000);
 }
 
 
@@ -241,7 +253,6 @@ function accessAdmin() {
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
         document.getElementById('login-section').style.display = 'none';
-        document.getElementById('signup-section').style.display = 'none';
         document.getElementById('admin-section-header').style.display = 'block'; // Mettez à jour l'ID ici
         document.getElementById('balance-section').style.display = 'block';
         document.getElementById('transaction-section').style.display = 'block';
