@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    </head>
 </head>
 
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <header>
         <h1>Shozeni Banko</h1>
         <section id="admin-section" style="display: none;">
@@ -59,13 +62,14 @@
 
         <section id="logs-section" style="display: none;">
             <h2>Historique des transactions</h2>
+            <h5>Historique des transactions momentanément indisponible.</h5>
             <ul id="transaction-logs"></ul>
         </section>
         
 
         <section id="logs-section" style="display: none;">
             <h2>Logs</h2>
-            <!-- Contenu des logs à afficher ici -->
+            <!-- Contenu des logs à afficher ici --> 
         </section>
         
         <section id="transaction-section" style="display: none;">
@@ -73,6 +77,13 @@
             <input type="number" id="amount" placeholder="Entrez le montant">
             <!-- Ajoutez le bouton d'achat ici -->
             <button onclick="purchase()">Achat</button>
+        </section>
+
+        <!-- Template -->
+        <section id="logs-section" style="display: none;">
+            <h2>Historique des transactions</h2>
+            <h3>Virement N°SHBNKO9967 reçu de la part de "Thomas" 200€.</h3>
+            <ul id="transaction-logs"></ul>
         </section>
         
     </main>
